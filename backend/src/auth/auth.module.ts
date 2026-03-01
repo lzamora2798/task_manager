@@ -13,7 +13,7 @@ import { AuthController } from './auth.controller';
       signOptions: { expiresIn: '2h' },
     }),
   ],
-  controllers: [AuthController],   // 👈 THIS WAS MISSING
+  controllers: [AuthController],
   providers: [AuthService, JwtStrategy],
   exports: [AuthService],
 })

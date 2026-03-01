@@ -18,43 +18,45 @@ import {
     MEDIUM = 'medium',
     HIGH = 'high',
   }
- 
+  
   @Entity()
-export class Task {
-  @PrimaryGeneratedColumn()
-  id: number;
-
-  @Column()
-  title: string;
-
-  @Column({ nullable: true })
-  description?: string;
-
-  @Index()
-  @Column({
-    type: 'enum',
-    enum: TaskStatus,
-    default: TaskStatus.PENDING,
-  })
-  status: TaskStatus;
-
-  @Column({
-    type: 'enum',
-    enum: TaskPriority,
-    default: TaskPriority.MEDIUM,
-  })
-  priority: TaskPriority;
-
-  @Column({ type: 'date', nullable: true })
-  due_date?: string;
-
-  @Index()
-  @Column()
-  owner_id: number;
-
-  @CreateDateColumn()
-  created_at: Date;
-
-  @UpdateDateColumn()
-  updated_at: Date;
-}
+  export class Task {
+    @PrimaryGeneratedColumn({ type: 'int' })
+    id: number;
+  
+    // ✅ explicit type (fixes your error)
+    @Column({ type: 'varchar', length: 255 })
+    title: string;
+  
+    @Column({ type: 'text', nullable: true })
+    description?: string;
+  
+    @Index()
+    @Column({
+      type: 'enum',
+      enum: TaskStatus,
+      default: TaskStatus.PENDING,
+    })
+    status: TaskStatus;
+  
+    @Column({
+      type: 'enum',
+      enum: TaskPriority,
+      default: TaskPriority.MEDIUM,
+    })
+    priority: TaskPriority;
+  
+    // If you only need date (no time), keep as 'date'
+    @Column({ type: 'date', nullable: true })
+    due_date?: string;
+  
+    @Index()
+    @Column({ type: 'int' })
+    owner_id: number;
+  
+    @CreateDateColumn({ type: 'timestamp' })
+    created_at: Date;
+  
+    @UpdateDateColumn({ type: 'timestamp' })
+    updated_at: Date;
+  }
