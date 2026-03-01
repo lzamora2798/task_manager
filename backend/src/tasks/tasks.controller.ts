@@ -3,6 +3,7 @@ import {
     Controller,
     Delete,
     Get,
+    Inject,
     Param,
     Post,
     Put,
@@ -19,41 +20,27 @@ import {
   @Controller('tasks')
   @UseGuards(JwtAuthGuard)
   export class TasksController {
-    constructor(private readonly tasks: TasksService) {}
+    constructor(
+      @Inject(TasksService) private readonly tasks: TasksService,
+    ) {}
   
     @Get()
-    async list(
-      @Request() req,
-      @Query('status') status?: TaskStatus,
-    ) {
+    async list(@Request() req, @Query('status') status?: TaskStatus) {
       return this.tasks.list(req.user.userId, status);
     }
   
-    // POST /tasks
     @Post()
-    async create(
-      @Request() req,
-      @Body() dto: CreateTaskDto,
-    ) {
+    async create(@Request() req, @Body() dto: CreateTaskDto) {
       return this.tasks.create(req.user.userId, dto);
     }
   
-    // PUT /tasks/:id
     @Put(':id')
-    async update(
-      @Request() req,
-      @Param('id') id: string,
-      @Body() dto: UpdateTaskDto,
-    ) {
+    async update(@Request() req, @Param('id') id: string, @Body() dto: UpdateTaskDto) {
       return this.tasks.update(req.user.userId, Number(id), dto);
     }
   
-    // DELETE /tasks/:id
     @Delete(':id')
-    async remove(
-      @Request() req,
-      @Param('id') id: string,
-    ) {
+    async remove(@Request() req, @Param('id') id: string) {
       return this.tasks.remove(req.user.userId, Number(id));
     }
   }

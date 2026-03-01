@@ -162,7 +162,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/task-manager-api/dev/1772339812794-2026-03-01T04:36:52.794Z/task-manager-api.zip"
+          "S3Key": "serverless/task-manager-api/dev/1772340210753-2026-03-01T04:43:30.753Z/task-manager-api.zip"
         },
         "Handler": "src/lambda.handler",
         "Runtime": "nodejs20.x",
@@ -191,14 +191,14 @@
         "ApiLogGroup"
       ]
     },
-    "ApiLambdaVersionh2DDmAmV47hPGTxYsrV8eUNb7sAXhLEUyiD4LHHJE": {
+    "ApiLambdaVersionaxcBgbtF8KUbePR2gDmpzpgjsqEU6YyeO4GyWKyl90k": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "ApiLambdaFunction"
         },
-        "CodeSha256": "MsPKqn5Wi9mFw9vnwzFcsWdlZD2Md3f0XoYwmrkcCCw="
+        "CodeSha256": "aPDBE9OvvSfdL32sSBpz94Qfs/sKgLtMdQLfWmAa0lY="
       }
     },
     "HttpApi": {
@@ -309,7 +309,7 @@
     "ApiLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "ApiLambdaVersionh2DDmAmV47hPGTxYsrV8eUNb7sAXhLEUyiD4LHHJE"
+        "Ref": "ApiLambdaVersionaxcBgbtF8KUbePR2gDmpzpgjsqEU6YyeO4GyWKyl90k"
       },
       "Export": {
         "Name": "sls-task-manager-api-dev-ApiLambdaFunctionQualifiedArn"
